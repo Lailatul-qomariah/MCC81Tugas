@@ -13,7 +13,7 @@ public class Program
         bool isRunning = true;
         while (isRunning)
         {
-            //Console.Clear();
+            Console.Clear();
             Console.WriteLine("\n========================================" +
             "\n\t BASIC AUTHENTICATION \t\n========================================");
             Console.WriteLine("1. Create User \n2. Show User \n3. Search User \n4. Login User \n5. Exit");
@@ -21,12 +21,11 @@ public class Program
             Console.Write("input : ");
             //Console.ReadLine(); // hanya untuk enter, karena diatas menggunakan Console.Clear()
             if (int.TryParse(Console.ReadLine(), out int input))
-
             {
                 switch (input) //inputan user dijadikan sebagai kondisi dalam switch
                 {
                     case 1:
-                       
+                        Console.Clear();
                         string passwd;
                         bool validPsswd;
                         Console.Write("First Name: ");
@@ -49,7 +48,7 @@ public class Program
                             user1.CreateUser(firstName, lastName, passwd);
 
                         }
-                        
+                        Console.ReadLine();
                         break;
                     case 2:
                         user1.ShowUser();
@@ -64,24 +63,21 @@ public class Program
                                 if (int.TryParse(Console.ReadLine(), out int inpUpdates))
                                 {
                                     user1.EditUser(inpUpdates);
-                                    
                                 }
-                               
-                                
+                                Console.WriteLine("Invalid input. Please enter a valid ID.");
                                 break;
                             case 2:
-                                
                                 Console.WriteLine("Enter the ID you want to DELETE : ");
                                 if (int.TryParse(Console.ReadLine(), out int inpDeletes))
                                 {
                                     user1.DeleteUser(inpDeletes);
-                                    break;
+                                    
                                 }
                                 else
                                 {
                                     Console.WriteLine("Invalid input. Please enter a valid ID.");
+                                    Console.ReadLine();
                                 }
-                                
                                 break;
                             case 3:
                                 isLoop = false;
@@ -89,15 +85,14 @@ public class Program
                         }
                         break;
                     case 3:
-                        
+                        Console.Clear();
                         Console.WriteLine("==CARI AKUN==");
                         Console.WriteLine("Enter name: ");
                         string checkUser = Console.ReadLine();
                         user1.SearchUser(checkUser);
-                        
                         break;
                     case 4:
-                        
+                        Console.Clear();
                         Console.Write("USERNAME : ");
                         string inpUserName = Console.ReadLine();
                         Console.Write("PASSWORD : ");
@@ -116,7 +111,7 @@ public class Program
             else
             {
                 Console.WriteLine("Enter the menu options correctly!!!"); //output ketika inputan pilihan menu user != int
-                
+                Console.Clear();
             }
         }
     }

@@ -75,6 +75,7 @@ public class UserCrud
         {
             Console.WriteLine("User not Found!!");
         }
+        Console.ReadLine();
     }
 
     public void Login(string inpUserName, string inpPsswd)
@@ -91,20 +92,20 @@ public class UserCrud
         {
             Console.WriteLine("Login Failed guys! Make sure the username or password is correct");
         }
+        Console.ReadLine();
     }
 
     public void EditUser(int inpUpdate)
     {
-        if (inpUpdate >= 1 && inpUpdate <= userList.Count)
+        User userEdit = userList.FirstOrDefault(u => u.Id == inpUpdate);
+        if (userEdit != null)
         {
-
-            User userEdit = userList.FirstOrDefault(u => u.Id == inpUpdate);
             Console.Write("New First Name: ");
             userEdit.FirstName = Console.ReadLine();
 
             Console.Write("New Last Name: ");
             userEdit.LastName = Console.ReadLine();
-            userEdit.Username = user2.GenerateUserName(userEdit.FirstName, userEdit.LastName, userList);
+            userEdit.Username = user2.GenerateUserName(userEdit.FirstName, userEdit.LastName, userList);   
             string passwd;
             bool validPsswd;
             do
@@ -120,22 +121,22 @@ public class UserCrud
                 }
             } while (validPsswd == false);
               Console.WriteLine("User data has been successfully edited!");
-            
+              Console.ReadLine();
         }
         else
         {
             Console.WriteLine("Invalid input. Please enter a valid ID.");
+            Console.ReadLine();
         }
 
     }
 
     public void DeleteUser(int inpDelete)
     {
-        
-        if (inpDelete >= 1 && inpDelete <= userList.Count)
-        {
-            
-            User userDelete = userList.FirstOrDefault(u => u.Id == inpDelete);
+
+        User userDelete = userList.FirstOrDefault(u => u.Id == inpDelete);
+        if (userDelete != null)
+        {            
             userList.Remove(userDelete);
             Console.WriteLine("User has been successfully deleted!!");
         }
@@ -143,6 +144,7 @@ public class UserCrud
         {
             Console.WriteLine("Invalid ID. User not found");
         }
+        Console.ReadLine();
     }
 
 }
