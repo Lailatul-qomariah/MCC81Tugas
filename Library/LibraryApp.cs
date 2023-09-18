@@ -92,7 +92,7 @@ public class LibraryApp
                     Console.WriteLine("============================================");
                     Console.WriteLine("\t VIEW BOOK \t");
                     Console.WriteLine("============================================");
-                    catalog.ShowListBook();
+                    catalog.ListBook();
                     Console.ReadLine();
 
                     break;

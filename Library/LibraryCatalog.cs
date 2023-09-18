@@ -45,20 +45,20 @@ namespace Library
             }
             else
             {
-                /*Console.WriteLine("Buku berhasil ditemukan");
+                Console.WriteLine("Buku berhasil ditemukan");
                 foreach (var item in findBook)
                 {
                     Console.WriteLine($"Title: {item.Tittle}, Author: {item.Author}, Publication Year: {item.PublishYear}");
-                }*/
+                }
 
-                ShowListBook(findBook);
+                //ShowListBook(findBook);
             }
         }
 
-        public void ShowListBook(List<Book> cekBook) //parameter menggunakan list 
+        public void ListBook()  
         {
-            cekBook = books;
-            foreach (var listBook in cekBook)
+            
+            foreach (var listBook in books)
             {
                 Console.WriteLine("--------------------------------------------");
                 Console.WriteLine($"" +
@@ -71,10 +71,10 @@ namespace Library
             }
         }
 
-        public void ListBook()
+       /* public void ListBook()
         {
-            ListBook(books);
-        }
+            ShowListBook(books);
+        }*/
 
       
 
