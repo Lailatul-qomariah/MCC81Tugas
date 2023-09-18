@@ -57,25 +57,29 @@ namespace Library
 
         public void ListBook()  
         {
-            
-            foreach (var listBook in books)
+            if (books.Count == 0)
             {
-                Console.WriteLine("--------------------------------------------");
-                Console.WriteLine($"" +
-                    $"\nJudul Buku          : {listBook.Tittle} " +
-                    $"\nPenulis             : {listBook.Author} " +
-                    $"\nTahun Terbit        : {listBook.PublishYear}");
-                  
-                Console.WriteLine("--------------------------------------------");
-
+                Console.WriteLine("The library catalog is empty. No books have been added yet.");
             }
+            else
+            {
+                foreach (var listBook in books)
+                {
+                    Console.WriteLine("--------------------------------------------");
+                    Console.WriteLine($"" +
+                        $"\nJudul Buku          : {listBook.Tittle} " +
+                        $"\nPenulis             : {listBook.Author} " +
+                        $"\nTahun Terbit        : {listBook.PublishYear}");
+
+                    Console.WriteLine("--------------------------------------------");
+
+                }
+            }
+
+                
         }
 
-       /* public void ListBook()
-        {
-            ShowListBook(books);
-        }*/
-
+      
       
 
         

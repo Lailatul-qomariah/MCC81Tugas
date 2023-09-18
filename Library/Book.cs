@@ -14,13 +14,13 @@ namespace Library
        // public string NoISBN { get; set; }
 
         public Book() { }
-        public Book(string tittle, string author, int publishYear)
+        /*public Book(string tittle, string author, int publishYear)
         {
             Tittle = tittle;
             Author = author;
             PublishYear = publishYear;
             //NoISBN = NoBuku;
-        }
+        }*/
     }
 
 
