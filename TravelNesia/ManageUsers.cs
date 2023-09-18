@@ -12,7 +12,7 @@ public class ManageUsers
     
 
 
-    public void LoginUser(string email, string password)
+   /* public void LoginUser(string email, string password)
     {
         var pswdLogin = userList.FirstOrDefault(u => u.Email == email && u.Password == password);
         if (pswdLogin != null && pswdLogin.Email ==email && pswdLogin.Password == password)
@@ -26,7 +26,7 @@ public class ManageUsers
             Console.WriteLine("Login Failed guys! Make sure the username or password is correct");
         }
         Console.ReadLine();
-    }
+    }*/
 
     
 

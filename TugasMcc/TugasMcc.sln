@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TugasMcc", "TugasMcc.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BelajarMandiri", "..\BelajarMandiri\BelajarMandiri.csproj", "{0F3D1B16-1C58-47FA-9B17-FE890121FA64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelNesia", "..\TravelNesia\TravelNesia.csproj", "{4FEA8321-07DE-477A-9185-6B4718CFFD98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelNesia", "..\TravelNesia\TravelNesia.csproj", "{4FEA8321-07DE-477A-9185-6B4718CFFD98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "..\Library\Library.csproj", "{16EDDBEC-929C-4BBD-A3EB-890E3C46D816}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{4FEA8321-07DE-477A-9185-6B4718CFFD98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FEA8321-07DE-477A-9185-6B4718CFFD98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FEA8321-07DE-477A-9185-6B4718CFFD98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16EDDBEC-929C-4BBD-A3EB-890E3C46D816}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16EDDBEC-929C-4BBD-A3EB-890E3C46D816}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16EDDBEC-929C-4BBD-A3EB-890E3C46D816}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16EDDBEC-929C-4BBD-A3EB-890E3C46D816}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

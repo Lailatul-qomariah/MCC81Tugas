@@ -45,7 +45,6 @@ public class User
         return username;
     }
 
-
     public static bool ValidatePassword(string password)
     {
         if (password.Length < 8) //cek psswd apakah lebih dari 8 karakter
