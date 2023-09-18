@@ -51,14 +51,14 @@ namespace Library
                     Console.WriteLine($"Title: {item.Tittle}, Author: {item.Author}, Publication Year: {item.PublishYear}");
                 }*/
 
-                ListBook(findBook);
+                ShowListBook(findBook);
             }
         }
 
-        public void ListBook(List<Book> books) //parameter menggunakan list 
+        public void ShowListBook(List<Book> cekBook) //parameter menggunakan list 
         {
-            
-            foreach (var listBook in books)
+            cekBook = books;
+            foreach (var listBook in cekBook)
             {
                 Console.WriteLine("--------------------------------------------");
                 Console.WriteLine($"" +
@@ -71,7 +71,7 @@ namespace Library
             }
         }
 
-        public void ShowListBook()
+        public void ListBook()
         {
             ListBook(books);
         }
