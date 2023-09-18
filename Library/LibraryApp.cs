@@ -62,7 +62,8 @@ public class LibraryApp
                     string noBukuDel = Console.ReadLine();
                     if (errorHandler.TryParseInt(noBukuDel, out int delBook))
                     {
-                        LibraryCatalog.catalog.RemoveBook(delBook);
+                        Book bookToDelete = LibraryCatalog.catalog.FindIsbn(delBook);
+                        LibraryCatalog.catalog.RemoveBook(bookToDelete);
                     }
                     Console.ReadLine();
                     break;

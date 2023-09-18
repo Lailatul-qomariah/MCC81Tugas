@@ -26,8 +26,14 @@ namespace Library
             Console.WriteLine("Book data has been successfully added!!");
 
         }
+        public Book FindIsbn(int noBuku)
+        {
+            return booksks.FirstOrDefault(b => b.NoISBN == noBuku);
+        }
+
         public void RemoveBook(Book book)
         {
+            
             if (booksks.Contains(book))
             {
                 booksks.Remove(book);

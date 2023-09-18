@@ -76,7 +76,7 @@ namespace Library
             if (!ValidatePubYear(publicationYear) || !validateIsbn(noBuku))
             {
                 Console.WriteLine("\nInvalid Publish Year or ISBN Number Format!" +
-                    "\nInput [ublish year cannot be later than 2023 and less than 1900\n" +
+                    "\nInput Publish Year cannot be later than 2023 and less than 1900\n" +
                     "ISBN  must contain exactly 10 or 13 digits");
                 return false;
             }
@@ -89,7 +89,7 @@ namespace Library
             return true;
 
         }
-            
+
 
 
     }
