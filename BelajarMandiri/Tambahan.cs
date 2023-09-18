@@ -19,7 +19,12 @@ namespace TugasMcc
             tambah.UserBiasa(n);
 
         }
-    
+        public static void Main(string[] args)
+        {
+            //MenuUser();
+            //Travel.UserMenu();
+        }
+
     }
 
 }

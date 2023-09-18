@@ -1,0 +1,4 @@
+C:\Users\ASUS\source\repos\BelajarMandiri\obj\Debug\net6.0\BelajarMandiri.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\source\repos\BelajarMandiri\obj\Debug\net6.0\BelajarMandiri.AssemblyInfoInputs.cache
+C:\Users\ASUS\source\repos\BelajarMandiri\obj\Debug\net6.0\BelajarMandiri.AssemblyInfo.cs
+C:\Users\ASUS\source\repos\BelajarMandiri\obj\Debug\net6.0\BelajarMandiri.csproj.CoreCompileInputs.cache

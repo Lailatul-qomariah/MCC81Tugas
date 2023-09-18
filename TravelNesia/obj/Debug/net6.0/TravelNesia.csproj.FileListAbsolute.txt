@@ -1,0 +1,14 @@
+C:\Users\ASUS\source\repos\TravelNesia\bin\Debug\net6.0\TravelNesia.exe
+C:\Users\ASUS\source\repos\TravelNesia\bin\Debug\net6.0\TravelNesia.deps.json
+C:\Users\ASUS\source\repos\TravelNesia\bin\Debug\net6.0\TravelNesia.runtimeconfig.json
+C:\Users\ASUS\source\repos\TravelNesia\bin\Debug\net6.0\TravelNesia.dll
+C:\Users\ASUS\source\repos\TravelNesia\bin\Debug\net6.0\TravelNesia.pdb
+C:\Users\ASUS\source\repos\TravelNesia\obj\Debug\net6.0\TravelNesia.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\source\repos\TravelNesia\obj\Debug\net6.0\TravelNesia.AssemblyInfoInputs.cache
+C:\Users\ASUS\source\repos\TravelNesia\obj\Debug\net6.0\TravelNesia.AssemblyInfo.cs
+C:\Users\ASUS\source\repos\TravelNesia\obj\Debug\net6.0\TravelNesia.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\source\repos\TravelNesia\obj\Debug\net6.0\TravelNesia.dll
+C:\Users\ASUS\source\repos\TravelNesia\obj\Debug\net6.0\refint\TravelNesia.dll
+C:\Users\ASUS\source\repos\TravelNesia\obj\Debug\net6.0\TravelNesia.pdb
+C:\Users\ASUS\source\repos\TravelNesia\obj\Debug\net6.0\TravelNesia.genruntimeconfig.cache
+C:\Users\ASUS\source\repos\TravelNesia\obj\Debug\net6.0\ref\TravelNesia.dll
