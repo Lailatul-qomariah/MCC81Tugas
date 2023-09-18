@@ -29,13 +29,13 @@ namespace Library
             }
             else
             {
-                ErrorHandler.HandleError("Invalid ISBN number. Book not found!!");
+                ErrorHandler.HandleError("Invalid Title number. Book not found!!");
             }
         }
 
         public void FindBook(string tittles)
         {
-            //search berdasarkan tittle, author, publisher dan ISBN
+            
             var findBook = books.Where
                 (b => Regex.IsMatch(b.Tittle, tittles, RegexOptions.IgnoreCase)).ToList();
 
@@ -45,13 +45,18 @@ namespace Library
             }
             else
             {
-                Console.WriteLine("Buku berhasil ditemukan");
                 foreach (var item in findBook)
                 {
-                    Console.WriteLine($"Title: {item.Tittle}, Author: {item.Author}, Publication Year: {item.PublishYear}");
+                    Console.WriteLine("--------------------------------------------");
+                    Console.WriteLine($"" +
+                        $"\nJudul Buku          : {item.Tittle} " +
+                        $"\nPenulis             : {item.Author} " +
+                        $"\nTahun Terbit        : {item.PublishYear}");
+
+                    Console.WriteLine("--------------------------------------------");
                 }
 
-                //ShowListBook(findBook);
+                
             }
         }
 
@@ -64,16 +69,16 @@ namespace Library
             else
             {
                 foreach (var listBook in books)
-                {
-                    Console.WriteLine("--------------------------------------------");
-                    Console.WriteLine($"" +
-                        $"\nJudul Buku          : {listBook.Tittle} " +
-                        $"\nPenulis             : {listBook.Author} " +
-                        $"\nTahun Terbit        : {listBook.PublishYear}");
+            {
+                Console.WriteLine("--------------------------------------------");
+                Console.WriteLine($"" +
+                    $"\nJudul Buku          : {listBook.Tittle} " +
+                    $"\nPenulis             : {listBook.Author} " +
+                    $"\nTahun Terbit        : {listBook.PublishYear}");
+                  
+                Console.WriteLine("--------------------------------------------");
 
-                    Console.WriteLine("--------------------------------------------");
-
-                }
+            }
             }
 
                 
