@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace Library;
 
@@ -16,92 +15,75 @@ public class LibraryApp
 
     public static void MenuLibrary()
     {
-        
-        LibraryCatalog catalog = new LibraryCatalog();
-        
-        Book newBooks = new Book();
+        ErrorHandler errorHandler = new ErrorHandler();
+        //LibraryCatalog catalog = new LibraryCatalog();
+        //LibraryCatalog.catalog.AddBook(new Book("The Hobbit", "J.R.R. Tolkien", 1937,2173247));
         while (true)
-
         {
-            Console.Clear();
-            Console.WriteLine("============================================");
+            Console.WriteLine("==========================");
             Console.WriteLine("\t MENU LIBRARY \t");
-            Console.WriteLine("============================================");
+            Console.WriteLine("==========================");
             Console.WriteLine("\n1. Create Data Book \n2. Delete Book \n3. Search Book \n4. View Book \n5. Exit");
-            Console.Write("Input : ");
+            Console.Write("Inpt : ");
             string inpMenu = Console.ReadLine();
-            //Console.ReadLine();
+
             switch (inpMenu)
             {
                 case "1":
-                    Console.Clear();
                     Console.WriteLine("============================================");
                     Console.WriteLine("\t CREATE BOOK \t");
                     Console.WriteLine("============================================");
-                    Console.Write("Masukkan Judul Buku              :");
-                    newBooks.Tittle= Console.ReadLine();
-                    Console.Write("Masukkan Nama Penulis            :");
-                    newBooks.Author= Console.ReadLine();
-                    Console.Write("Masukkan Tahun Publikasi 4 digit :");
-                    bool yearInput = false;
-                    string pattern = @"^\d{4}$"; // Validasi tahun harus 4 digit.
-                    do
+                    Console.Write("Masukkan Judul Buku      :");
+                    string tittle = Console.ReadLine();
+                    Console.Write("Masukkan Nama Penulis    :");
+                    string author = Console.ReadLine();
+                    Console.Write("Masukkan No ISBN Buku    :");
+                    string noBuku = Console.ReadLine();
+                    Console.Write("Masukkan Tahun Publikasi :");
+                    string tahun = Console.ReadLine();
+
+                    if (errorHandler.TryParseInt(tahun, out int publishYear) && errorHandler.TryParseInt(noBuku, out int noISBN))
                     {
-                        string inpYear = Console.ReadLine();
-                        if (Regex.IsMatch(inpYear, pattern))
-                        {
-                            newBooks.PublishYear = int.Parse(inpYear);
-                            yearInput = true;
-                        }
-                        else
-                        {
-                            ErrorHandler.HandleError("Invalid input. The year of publication must be a 4-digit number.");
-                        }
-                    } while (!yearInput);
+                        LibraryCatalog.catalog.AddBook(new Book(tittle, author, publishYear, noISBN)); //manggil method di catalog
+                    }
+                    else
+                    {
+                        errorHandler.InvalInputHandler();
+                    }
                     
-                    catalog.AddBook(newBooks);
-                    Console.WriteLine("Book data has been successfully added!!");
                     Console.ReadLine();
+
+
 
                     break;
 
                 case "2":
-                    Console.Clear();
                     Console.WriteLine("============================================");
                     Console.WriteLine("\t DELETE BOOK \t");
                     Console.WriteLine("============================================");
-                    Console.Write("Masukkan Judul Buku :");
-                    string noBukuDel = Console.ReadLine();
-                    catalog.RemoveBook(noBukuDel);
-                    Console.ReadLine();
+                    Console.Write("Masukkan No ISBN Buku :");
+                    int noBukuDel = int.Parse(Console.ReadLine());
+                    LibraryCatalog.catalog.RemoveBook(noBukuDel);
                     break;
 
                 case "3":
-                    Console.Clear();
                     Console.WriteLine("============================================");
                     Console.WriteLine("\t SEARCH BOOK \t");
                     Console.WriteLine("============================================");
                     Console.Write("Masukkan Keyword yang ingin dicari :");
                     string searchBook = Console.ReadLine();
-                    catalog.FindBook(searchBook);
-                    Console.ReadLine();
+                    LibraryCatalog.catalog.FindBook(searchBook);
                     break;
 
                 case "4":
-                    Console.Clear();
                     Console.WriteLine("============================================");
                     Console.WriteLine("\t VIEW BOOK \t");
                     Console.WriteLine("============================================");
-                    catalog.ListBook();
-                    Console.ReadLine();
+                    LibraryCatalog.catalog.ShowListBook();
 
                     break;
                 case "5":
                     Environment.Exit(0);
-                    break;
-                default:
-                    ErrorHandler.HandleError("Invalid Menu Option.");
-                    Console.ReadLine();
                     break;
             }
 
