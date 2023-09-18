@@ -10,115 +10,68 @@ namespace Library
 {
     public class LibraryCatalog
     {
+        //Alhamdulillah selesai 
         List<Book> booksks = new List<Book>();
         public static LibraryCatalog catalog = new LibraryCatalog();
+        ErrorHandler errorHandler = new ErrorHandler();
+
 
         public void AddBook(Book book)
         {
-            
+            if (!errorHandler.HandleBookError(book.Tittle, book.Author, book.PublishYear, book.NoISBN))
+            {
+                return;
+            }
             booksks.Add(book);
             Console.WriteLine("Book data has been successfully added!!");
 
         }
-
-
-
-       /* public List<Book> FindBooksByKeyword(string keyword)
+        public void RemoveBook(Book book)
         {
-            // Menggunakan ToLowerInvariant() untuk memastikan pencarian tanpa memperhatikan besar huruf.
-            keyword = keyword.ToLowerInvariant();
-
-            List<Book> foundBooks = books
-                .Where(book => book.Tittle.ToLowerInvariant().Contains(keyword))
-                .ToList();
-
-            return foundBooks;
-        }
-
-        public Book FindBook(string title)
-        {
-            return books.FirstOrDefault(book => book.Tittle.Equals(title, StringComparison.OrdinalIgnoreCase));
-        }*/
-
-
-
-       /* public void ShowAllBook()
-        {
-            ShowBook(books);
-        }
-
-        public void ShowBook(List<Book> booksToShow)
-        {
-        
-            if (booksToShow.Count == 0)
+            if (booksks.Contains(book))
             {
-                Console.WriteLine("Tidak ada data buku");
-            }
-
-            foreach (Book book in booksToShow)
-            {
-                Console.WriteLine(book.ToString() + "\n");
-            }
-        }*/
-
-
-        public void RemoveBook(int noBuku)
-        {
-            var bookDelete = booksks.FirstOrDefault(b => b.NoISBN == noBuku); //mencocokkan dan mengambil objek berdasarkan no buku / ISBN
-            if (bookDelete != null)
-            {
-                booksks.Remove(bookDelete);
+                booksks.Remove(book);
                 Console.WriteLine("Book data has been successfully deleted!!");
             }
             else
             {
-                Console.WriteLine("Invalid ISBN number. Book not found!!");
+                errorHandler.HandleBookNotDelete();
             }
         }
-
-
-
-
-
-
-
-        public void FindBook(string searchBook)
+        public void ListBook()
+        {
+            ShowListBook(booksks);
+        }
+        public void FindBook(string title)
         {
             //search berdasarkan tittle, author, publisher dan ISBN
             var findBook = booksks.Where
-                (b => Regex.IsMatch(b.Tittle, searchBook, RegexOptions.IgnoreCase)).ToList();
+                (b => Regex.IsMatch(b.Tittle, title, RegexOptions.IgnoreCase)).ToList();
 
             if (findBook.Count == 0)
             {
-                Console.WriteLine("There are no books that match the keywords given!");
+                errorHandler.HandleSearchNotFound();
             }
             else
             {
-                ListBook(findBook);
+                ShowListBook(findBook);
             }
         }
-
-        public void ListBook(List<Book> bookList) //parameter menggunakan list 
+        public void ShowListBook(List<Book> bookList) //parameter menggunakan list 
         {
-            
+
             foreach (var listBook in bookList)
             {
                 Console.WriteLine("--------------------------------------------");
                 Console.WriteLine($"" +
                     $"\nJudul Buku          : {listBook.Tittle} " +
                     $"\nPenulis             : {listBook.Author} " +
-                    $"\nTahun Terbit        : {listBook.PublishYear}"+
+                    $"\nTahun Terbit        : {listBook.PublishYear}" +
                     $"\nNomor ISBN          : {listBook.NoISBN}");
                 Console.WriteLine("--------------------------------------------");
 
             }
         }
-
-        public void ShowListBook()
-        {
-            ListBook(booksks);
-        }
-
 
     }
 }

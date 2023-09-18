@@ -11,12 +11,12 @@ namespace Library
 {
     public class ErrorHandler
     {
-        LibraryCatalog catalog = new LibraryCatalog();
+        List<Book> books = new List<Book>();
 
-        public bool validateIsbn(string noBuku)
+        public bool validateIsbn(int noBuku)
         {
-
-            if (Regex.IsMatch(noBuku, @"^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$"))
+            string cekNoBuku = noBuku.ToString();
+            if (Regex.IsMatch(cekNoBuku, @"^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$"))
             {
                 return true;
             }
@@ -24,13 +24,13 @@ namespace Library
 
         }
 
-        public bool ValidatePubYear(string publishYear)
+        public bool ValidatePubYear(int publishYear)
         {
-
-            if (Regex.IsMatch(publishYear, @"^\d{4}$"))
+            string cekYear = publishYear.ToString();
+            if (Regex.IsMatch(cekYear, @"^\d{4}$"))
             {
                 // Konversi input menjadi angka untuk memeriksa rentang tahun yang valid
-                int year = int.Parse(publishYear);
+                int year = int.Parse(cekYear);
 
                 // Batasan tahun yang valid, misalnya 1900 hingga 2099
                 int minYear = 1900;
@@ -40,7 +40,6 @@ namespace Library
                 {
                     return true;
                 }
-                Console.WriteLine("Input cannot be later than 2023 and less than 1900");
             }
 
             return false;
@@ -56,49 +55,41 @@ namespace Library
             Console.WriteLine("\nInvalid input!!!, please enter the data correctly!");
         }
 
-        public void HandleBookNotFound()
+        public void HandleBookNotDelete()
         {
-            Console.WriteLine("\nBuku tidak ditemukan, Coba Lagi !");
+            Console.WriteLine("Invalid ISBN number. Book not found!!");
         }
 
         public void HandleSearchNotFound()
         {
-            Console.WriteLine("\nTidak ada book yang cocok dengan kata kunci yang diberikan !");
+            Console.WriteLine("\nThere are no books that match the keywords given!!");
         }
 
-        public bool HandleBookError(string title, string author, int publicationYear, int publishYear, int noBuku)
+        public bool HandleBookError(string title, string author, int publicationYear, int noBuku)
         {
             if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(author) || publicationYear == 0)
             {
                 Console.WriteLine("\nData cannot be empty!. Make sure all columns are filled in!");
                 return false; // Jika input tidak valid, keluar dari metode.
             }
-            if (ContainsDigits(author))
-            {
-                Console.WriteLine("\nJudul dan penulis tidak boleh mengandung angka !\n");
-                return false; // Input mengandung angka, kembalikan false.
-            }
 
-           /* if (!ValidatePubYear(publishYear) || !validateIsbn(noBuku))
+            if (!ValidatePubYear(publicationYear) || !validateIsbn(noBuku))
             {
-                Console.WriteLine("\nInvalid Publish Year or ISBN Number Format!\n");
-                return;
+                Console.WriteLine("\nInvalid Publish Year or ISBN Number Format!" +
+                    "\nInput [ublish year cannot be later than 2023 and less than 1900\n" +
+                    "ISBN  must contain exactly 10 or 13 digits");
+                return false;
             }
             //cek apakah no isbn yg dimasukkan sama dengan no ISBN yang sudah ada
-            if (bookList.Any(b => b.NoISBN == noBuku))
+            if (books.Any(b => b.NoISBN == noBuku))
             {
                 Console.WriteLine("\nISBN number is already in use!!!");
-               */ /*return;*/
-
+                return true;
+            }
             return true;
+
         }
             
-
-        private bool ContainsDigits(string input)
-        {
-            // Menggunakan regex untuk mencari angka dalam string
-            return Regex.IsMatch(input, @"\d");
-        }
 
 
     }

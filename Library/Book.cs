@@ -12,11 +12,6 @@ namespace Library
         public string Author { get; set; }
         public int PublishYear { get; set; }
         public int NoISBN { get; set; }
-
-        public Book()
-        {
-
-        }
        
         public Book(string tittle, string author, int publishYear, int NoBuku)
         {

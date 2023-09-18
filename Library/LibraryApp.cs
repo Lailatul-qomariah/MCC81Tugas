@@ -16,20 +16,20 @@ public class LibraryApp
     public static void MenuLibrary()
     {
         ErrorHandler errorHandler = new ErrorHandler();
-        //LibraryCatalog catalog = new LibraryCatalog();
-        //LibraryCatalog.catalog.AddBook(new Book("The Hobbit", "J.R.R. Tolkien", 1937,2173247));
+        
         while (true)
         {
+            Console.Clear();
             Console.WriteLine("==========================");
             Console.WriteLine("\t MENU LIBRARY \t");
             Console.WriteLine("==========================");
             Console.WriteLine("\n1. Create Data Book \n2. Delete Book \n3. Search Book \n4. View Book \n5. Exit");
             Console.Write("Inpt : ");
             string inpMenu = Console.ReadLine();
-
             switch (inpMenu)
             {
                 case "1":
+                    Console.Clear();
                     Console.WriteLine("============================================");
                     Console.WriteLine("\t CREATE BOOK \t");
                     Console.WriteLine("============================================");
@@ -50,40 +50,47 @@ public class LibraryApp
                     {
                         errorHandler.InvalInputHandler();
                     }
-                    
                     Console.ReadLine();
-
-
-
                     break;
 
                 case "2":
+                    Console.Clear(); 
                     Console.WriteLine("============================================");
                     Console.WriteLine("\t DELETE BOOK \t");
                     Console.WriteLine("============================================");
                     Console.Write("Masukkan No ISBN Buku :");
-                    int noBukuDel = int.Parse(Console.ReadLine());
-                    LibraryCatalog.catalog.RemoveBook(noBukuDel);
+                    string noBukuDel = Console.ReadLine();
+                    if (errorHandler.TryParseInt(noBukuDel, out int delBook))
+                    {
+                        LibraryCatalog.catalog.RemoveBook(delBook);
+                    }
+                    Console.ReadLine();
                     break;
 
                 case "3":
+                    Console.Clear();
                     Console.WriteLine("============================================");
                     Console.WriteLine("\t SEARCH BOOK \t");
                     Console.WriteLine("============================================");
                     Console.Write("Masukkan Keyword yang ingin dicari :");
                     string searchBook = Console.ReadLine();
                     LibraryCatalog.catalog.FindBook(searchBook);
+                    Console.ReadLine();
                     break;
 
                 case "4":
+                    Console.Clear();
                     Console.WriteLine("============================================");
                     Console.WriteLine("\t VIEW BOOK \t");
                     Console.WriteLine("============================================");
-                    LibraryCatalog.catalog.ShowListBook();
-
+                    LibraryCatalog.catalog.ListBook();
+                    Console.ReadLine();
                     break;
                 case "5":
                     Environment.Exit(0);
+                    break;
+                default:
+                    errorHandler.InvalInputHandler();
                     break;
             }
 
