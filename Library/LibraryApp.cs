@@ -17,8 +17,8 @@ public class LibraryApp
     {
         
         LibraryCatalog library = new LibraryCatalog();
-        library.AddBook("kita", "ria", "2022", "1234567891");
-        library.AddBook("Pra", "ria", "2023", "1234567892");
+        library.AddBook("kita", "ria", 2022, "1234567891");
+        library.AddBook("Pra", "ria", 2023, "1234567892");
 
         while (true)
         {
@@ -40,10 +40,15 @@ public class LibraryApp
                     Console.Write("Masukkan Nama Penulis    :");
                     string author = Console.ReadLine();
                     Console.Write("Masukkan Tahun Publikasi :");
-                    string publishYear = Console.ReadLine();
-                    Console.Write("Masukkan No ISBN Buku    :");
-                    string noBuku = Console.ReadLine();
-                    library.AddBook(tittle, author, publishYear, noBuku);
+                    if (int.TryParse(Console.ReadLine(), out int publishYear)) 
+                    {
+                        Console.Write("Masukkan No ISBN Buku    :");
+                        string noBuku = Console.ReadLine();
+                        library.AddBook(tittle, author, publishYear, noBuku);
+                    } else
+                    {
+                        Console.WriteLine("\nInvalid Publish Year Format!\n");
+                    }
                     break;
 
                 case "2":

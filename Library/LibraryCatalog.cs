@@ -13,10 +13,10 @@ namespace Library
         
         ErrorHandler errorHandl = new ErrorHandler();
         
-        public void AddBook(string tittle, string author, string publishYear, string noBuku)
+        public void AddBook(string tittle, string author, int publishYear, string noBuku)
         {   //pengecekan apakah inputan kosong atau berisi spasi saja
             if (string.IsNullOrWhiteSpace(tittle) || string.IsNullOrWhiteSpace(author) || 
-                string.IsNullOrWhiteSpace(publishYear) || string.IsNullOrWhiteSpace(noBuku))
+                string.IsNullOrWhiteSpace(noBuku))
             {
                 Console.WriteLine("Data cannot be empty!. Make sure all columns are filled in!");
                 return;
@@ -39,9 +39,9 @@ namespace Library
 
         }
 
-        public void RemoveBook(string noBuku)
+        public void RemoveBook(string book)
         {
-            var bookDelete = bookList.FirstOrDefault(b => b.NoISBN == noBuku); //mencocokkan dan mengambil objek berdasarkan no buku / ISBN
+            var bookDelete = bookList.FirstOrDefault(b => b.NoISBN == book); //mencocokkan dan mengambil objek berdasarkan no buku / ISBN
             if (bookDelete != null)
             {
                 bookList.Remove(bookDelete);
@@ -53,14 +53,11 @@ namespace Library
             }
         }
 
-        public void FindBook(string searchBook)
+        public void FindBook(string tittle)
         {
             //search berdasarkan tittle, author, publisher dan ISBN
             var findBook = bookList.Where
-                (b => Regex.IsMatch(b.Tittle, searchBook, RegexOptions.IgnoreCase) ||
-                Regex.IsMatch(b.Author, searchBook, RegexOptions.IgnoreCase) ||
-                Regex.IsMatch(b.PublishYear, searchBook, RegexOptions.IgnoreCase) ||
-                Regex.IsMatch(b.NoISBN, searchBook, RegexOptions.IgnoreCase)).ToList();
+                (b => Regex.IsMatch(b.Tittle, tittle, RegexOptions.IgnoreCase)).ToList();
 
             if (findBook.Count == 0)
             {

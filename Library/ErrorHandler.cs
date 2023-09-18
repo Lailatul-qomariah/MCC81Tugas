@@ -22,13 +22,13 @@ namespace Library
 
         }
 
-        public bool ValidatePubYear(string publishYear)
+        public bool ValidatePubYear(int publishYear)
         {
-              
-                if (Regex.IsMatch(publishYear, @"^\d{4}$")) // pattern untuk tahun adalah 4 angka
+                string publish = publishYear.ToString();
+                if (Regex.IsMatch(publish, @"^\d{4}$")) // pattern untuk tahun adalah 4 angka
                 {
                     // Konversi inputan to int
-                    int year = int.Parse(publishYear);
+                    int year = int.Parse(publish);
 
                     // Batasan tahun yang valid
                     int minYear = 1900;

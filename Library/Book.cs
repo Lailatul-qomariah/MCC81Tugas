@@ -10,10 +10,10 @@ namespace Library
     {
         public string Tittle { get; set; }
         public string Author { get; set; }
-        public string PublishYear { get; set; }
+        public int PublishYear { get; set; }
         public string NoISBN { get; set; }
 
-        public Book(string tittle, string author, string publishYear, string NoBuku)
+        public Book(string tittle, string author, int publishYear, string NoBuku)
         {
             Tittle = tittle;
             Author = author;
