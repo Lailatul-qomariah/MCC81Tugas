@@ -11,14 +11,15 @@ namespace Library
         public string Tittle { get; set; }
         public string Author { get; set; }
         public int PublishYear { get; set; }
-        public string NoISBN { get; set; }
+       // public string NoISBN { get; set; }
 
-        public Book(string tittle, string author, int publishYear, string NoBuku)
+        public Book() { }
+        public Book(string tittle, string author, int publishYear)
         {
             Tittle = tittle;
             Author = author;
             PublishYear = publishYear;
-            NoISBN = NoBuku;
+            //NoISBN = NoBuku;
         }
     }
 

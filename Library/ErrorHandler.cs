@@ -11,37 +11,10 @@ namespace Library
 {
     public class ErrorHandler
     {
-       public bool validateIsbn(string noBuku)
+       
+        public static void HandleError(string errorMessage)
         {
-            
-            if (Regex.IsMatch(noBuku, @"^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$")) //pattern untuk isbn pola 10 dan 13
-            {
-                return true;
-            }
-            return false;
-
-        }
-
-        public bool ValidatePubYear(int publishYear)
-        {
-                string publish = publishYear.ToString();
-                if (Regex.IsMatch(publish, @"^\d{4}$")) // pattern untuk tahun adalah 4 angka
-                {
-                    // Konversi inputan to int
-                    int year = int.Parse(publish);
-
-                    // Batasan tahun yang valid
-                    int minYear = 1900;
-                    int maxYear = 2023;
-
-                    if (year >= minYear && year <= maxYear)
-                    {
-                        return true;
-                    }
-                    Console.WriteLine("Input cannot be later than 2023 and less than 1900");
-                }
-
-                return false;
+            Console.WriteLine($"Error: {errorMessage}");
         }
 
     }

@@ -9,77 +9,63 @@ namespace Library
 {
     public class LibraryCatalog
     {
-        List<Book> bookList = new List<Book>();
+        List<Book> books = new List<Book>();
         
         ErrorHandler errorHandl = new ErrorHandler();
-        
-        public void AddBook(string tittle, string author, int publishYear, string noBuku)
-        {   //pengecekan apakah inputan kosong atau berisi spasi saja
-            if (string.IsNullOrWhiteSpace(tittle) || string.IsNullOrWhiteSpace(author) || 
-                string.IsNullOrWhiteSpace(noBuku))
-            {
-                Console.WriteLine("Data cannot be empty!. Make sure all columns are filled in!");
-                return;
-            }
-            //cek apakah input publishyear dan isbn/no buku sesuai dengan valisasinya
-            if (!errorHandl.ValidatePubYear(publishYear) || !errorHandl.validateIsbn(noBuku))
-            {
-                Console.WriteLine("\nInvalid Publish Year or ISBN Number Format!\n");
-                return;
-            }
-            //cek apakah no isbn yg dimasukkan sama dengan no ISBN yang sudah ada
-            if (bookList.Any(b => b.NoISBN == noBuku))
-            {
-                Console.WriteLine("\nISBN number is already in use!!!");
-                return;
-            }
-            Book bookObj = new Book(tittle, author, publishYear, noBuku);
-            bookList.Add(bookObj); //menambahkan objek ke dalam book list
-            Console.WriteLine("Book data has been successfully added!!");
 
+        public void AddBook(Book book)
+        {
+            books.Add(book);
         }
 
+       
         public void RemoveBook(string book)
         {
-            var bookDelete = bookList.FirstOrDefault(b => b.NoISBN == book); //mencocokkan dan mengambil objek berdasarkan no buku / ISBN
+            var bookDelete = books.FirstOrDefault(b => b.Tittle == book); //mencocokkan dan mengambil objek berdasarkan tittle
             if (bookDelete != null)
             {
-                bookList.Remove(bookDelete);
+                books.Remove(bookDelete);
                 Console.WriteLine("Book data has been successfully deleted!!");
             }
             else
             {
-                Console.WriteLine("Invalid ISBN number. Book not found!!");
+                ErrorHandler.HandleError("Invalid ISBN number. Book not found!!");
             }
         }
 
-        public void FindBook(string tittle)
+        public void FindBook(string tittles)
         {
             //search berdasarkan tittle, author, publisher dan ISBN
-            var findBook = bookList.Where
-                (b => Regex.IsMatch(b.Tittle, tittle, RegexOptions.IgnoreCase)).ToList();
+            var findBook = books.Where
+                (b => Regex.IsMatch(b.Tittle, tittles, RegexOptions.IgnoreCase)).ToList();
 
             if (findBook.Count == 0)
             {
-                Console.WriteLine("There are no books that match the keywords given!");
+                ErrorHandler.HandleError("There are no books that match the keywords given!");
             }
             else
             {
+                /*Console.WriteLine("Buku berhasil ditemukan");
+                foreach (var item in findBook)
+                {
+                    Console.WriteLine($"Title: {item.Tittle}, Author: {item.Author}, Publication Year: {item.PublishYear}");
+                }*/
+
                 ListBook(findBook);
             }
         }
 
-        public void ListBook(List<Book> bookList) //parameter menggunakan list 
+        public void ListBook(List<Book> books) //parameter menggunakan list 
         {
             
-            foreach (var listBook in bookList)
+            foreach (var listBook in books)
             {
                 Console.WriteLine("--------------------------------------------");
                 Console.WriteLine($"" +
                     $"\nJudul Buku          : {listBook.Tittle} " +
                     $"\nPenulis             : {listBook.Author} " +
-                    $"\nTahun Terbit        : {listBook.PublishYear}"+
-                    $"\nNomor ISBN          : {listBook.NoISBN}");
+                    $"\nTahun Terbit        : {listBook.PublishYear}");
+                  
                 Console.WriteLine("--------------------------------------------");
 
             }
@@ -87,9 +73,11 @@ namespace Library
 
         public void ShowListBook()
         {
-            ListBook(bookList);
+            ListBook(books);
         }
 
+      
 
+        
     }
 }
