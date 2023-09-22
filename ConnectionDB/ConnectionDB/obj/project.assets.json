@@ -475,11 +475,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\ConnectionDB\\ConnectionDB\\ConnectionDB.csproj",
+      "projectUniqueName": "E:\\C#\\MVC\\MVC\\ConnectionDB\\ConnectionDB.csproj",
       "projectName": "ConnectionDB",
-      "projectPath": "C:\\Users\\ASUS\\source\\repos\\ConnectionDB\\ConnectionDB\\ConnectionDB.csproj",
+      "projectPath": "E:\\C#\\MVC\\MVC\\ConnectionDB\\ConnectionDB.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ASUS\\source\\repos\\ConnectionDB\\ConnectionDB\\obj\\",
+      "outputPath": "E:\\C#\\MVC\\MVC\\ConnectionDB\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",

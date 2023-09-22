@@ -1,35 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
 using System.Xml.Linq;
 
 namespace ConnectionDB
 {
-    public  class Jobs
+    public  class Regions
     {
-        private readonly string connectionString = "Data Source=LAPTOP-IQK7879R;Database=db_mcc81;Integrated Security=True;Connect Timeout=30; Integrated Security=True";
-        public int Id { get; set; }
-        public string JobTitle {get; set; }
-        public int MinSalary { get; set; }
-        public int MaxSalary { get; set; }
+        public static Regions regions = new Regions();
+        public int Id { get; set; } 
+        public string Name { get; set; }
+        public Regions() { }
 
         public override string ToString()
         {
-            return $" Job Id : {Id} - Job Title : {JobTitle} - Min Salary : {MinSalary}, MaxSalary {MaxSalary}";
+            return $"{Id} - {Name}";
         }
 
-        public List<Jobs> GetAll()
+        public void GetAllGeneric()
         {
-            var jobs = new List<Jobs>();
+            List<Dictionary<string, object>> data = JoinTables.manageDatabase.GetAll("tbl_regions");
+            foreach (var row in data)
+            {
+                foreach (var keyValuePair in row)
+                {
+                    Console.WriteLine($"{keyValuePair.Key}: {keyValuePair.Value}");
+                }
+                Console.WriteLine();
+            }
+        }
 
-            using var connection = new SqlConnection(connectionString);
-            using var command = new SqlCommand();
+        public List<Regions> GetAll()
+        {
+            var regions = new List<Regions>();
+
+            using var connection = Connections.GetConnection();
+            using var command = Connections.GetCommand();
 
             command.Connection = connection;
-            command.CommandText = "SELECT * FROM tbl_jobs";
+            command.CommandText = "SELECT * FROM tbl_regions";
 
             try
             {
@@ -41,39 +53,37 @@ namespace ConnectionDB
                 {
                     while (reader.Read())
                     {
-                        jobs.Add(new Jobs
+                        regions.Add(new Regions
                         {
                             Id = reader.GetInt32(0),
-                            JobTitle = reader.GetString(1),
-                            MinSalary = reader.GetInt32(2),
-                            MaxSalary = reader.GetInt32(3)
+                            Name = reader.GetString(1)
                         });
                     }
                     reader.Close();
                     connection.Close();
 
-                    return jobs;
+                    return regions;
                 }
                 reader.Close();
                 connection.Close();
 
-                return new List<Jobs>();
+                return new List<Regions>();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
 
-            return new List<Jobs>();
+            return new List<Regions>();
         }
 
-        public Jobs GetById(int id)
+        public Regions GetById(int id)
         {
-            using var connection = new SqlConnection(connectionString);
-            using var command = new SqlCommand();
+            using var connection = Connections.GetConnection();
+            using var command = Connections.GetCommand();
 
             command.Connection = connection;
-            command.CommandText = "SELECT * FROM tbl_jobs WHERE id =@id";
+            command.CommandText = "SELECT * FROM tbl_regions WHERE id =@id";
 
             try
             {
@@ -87,49 +97,45 @@ namespace ConnectionDB
                 {
                     while (reader.Read())
                     {
-                        return new Jobs()
+                        return new Regions()
                         {
                             Id = reader.GetInt32(0),
-                            JobTitle = reader.GetString(1),
-                            MinSalary = reader.GetInt32(2),
-                            MaxSalary = reader.GetInt32(3)
+                            Name = reader.GetString(1)
                         };
 
                     }
                     reader.Close();
                     connection.Close();
 
-                    return new Jobs();
-
+                    return new Regions();
+                    
                 }
                 reader.Close();
                 connection.Close();
 
-                return new Jobs();
+                return new Regions();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
-            return new Jobs();
+            return new Regions();
 
 
         }
 
-        public string Insert(int id, string jobTitle, int minsalary, int maxSalary)
+        public string Insert(Regions region)
         {
-            using var connection = new SqlConnection(connectionString);
-            using var command = new SqlCommand();
+            using var connection = Connections.GetConnection();
+            using var command = Connections.GetCommand();
 
             command.Connection = connection;
-            command.CommandText = "INSERT INTO tbl_jobs VALUES (@Id, @jobTitle, @minSalary, @maxSalary);";
+            command.CommandText = "INSERT INTO tbl_regions VALUES (@id, @name);";
 
             try
             {
-                command.Parameters.Add(new SqlParameter("@id", id));
-                command.Parameters.Add(new SqlParameter("@jobTitle", jobTitle));
-                command.Parameters.Add(new SqlParameter("@minSalary", minsalary));
-                command.Parameters.Add(new SqlParameter("@maxSalary", maxSalary));
+                command.Parameters.Add(new SqlParameter("@id", region.Id));
+                command.Parameters.Add(new SqlParameter("@name", region.Name));
 
                 connection.Open();
                 using var transaction = connection.BeginTransaction();
@@ -156,20 +162,18 @@ namespace ConnectionDB
             }
         }
 
-        public string Update(int id, string jobTitle, int minSalary, int maxSalary)
+        public string Update(Regions region)
         {
-            using var connection = new SqlConnection(connectionString);
-            using var command = new SqlCommand();
+            using var connection = Connections.GetConnection();
+            using var command = Connections.GetCommand();
 
             command.Connection = connection;
-            command.CommandText = "UPDATE tbl_jobs SET id = @Id, jobTitle = @jobTitle, minSalary = @minSalary, maxSalary @maxSalary WHERE @id = id";
+            command.CommandText = "UPDATE tbl_regions SET name = @name WHERE id = @id";
 
             try
             {
-                command.Parameters.Add(new SqlParameter("@id", id));
-                command.Parameters.Add(new SqlParameter("@jobTitle", jobTitle));
-                command.Parameters.Add(new SqlParameter("@minSalary", minSalary));
-                command.Parameters.Add(new SqlParameter("@maxSalary", maxSalary));
+                command.Parameters.Add(new SqlParameter("@id", region.Id));
+                command.Parameters.Add(new SqlParameter("@name", region.Name));
 
                 connection.Open();
                 using var transaction = connection.BeginTransaction();
@@ -182,7 +186,7 @@ namespace ConnectionDB
                     transaction.Commit();
                     connection.Close();
 
-                    return result.ToString();
+                    return result.ToString(); 
                 }
                 catch (Exception ex)
                 {
@@ -194,16 +198,16 @@ namespace ConnectionDB
             {
                 return $"Error: {ex.Message}";
             }
-
+           
         }
 
         public string Delete(int id)
         {
-            using var connection = new SqlConnection(connectionString);
-            using var command = new SqlCommand();
+            using var connection = Connections.GetConnection();
+            using var command = Connections.GetCommand();
 
             command.Connection = connection;
-            command.CommandText = "DELETE tbl_jobs WHERE @id = id";
+            command.CommandText = "DELETE tbl_regions WHERE @id = id";
 
             try
             {
@@ -235,5 +239,8 @@ namespace ConnectionDB
 
 
         }
+
+
+        
     }
 }

@@ -1,35 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
-using System.Xml.Linq;
 
 namespace ConnectionDB
 {
-    public  class Jobs
+    public class Countries
     {
-        private readonly string connectionString = "Data Source=LAPTOP-IQK7879R;Database=db_mcc81;Integrated Security=True;Connect Timeout=30; Integrated Security=True";
         public int Id { get; set; }
-        public string JobTitle {get; set; }
-        public int MinSalary { get; set; }
-        public int MaxSalary { get; set; }
+        public string Name { get; set; }
+        public int RegionsId { get; set; }
+
+        public static Countries countries = new Countries();
 
         public override string ToString()
         {
-            return $" Job Id : {Id} - Job Title : {JobTitle} - Min Salary : {MinSalary}, MaxSalary {MaxSalary}";
+            return $"{Id} - {Name} - {RegionsId}";
         }
 
-        public List<Jobs> GetAll()
+        public List<Countries> GetAll()
         {
-            var jobs = new List<Jobs>();
+            var countries = new List<Countries>();
 
-            using var connection = new SqlConnection(connectionString);
-            using var command = new SqlCommand();
+            using var connection = Connections.GetConnection();
+            using var command = Connections.GetCommand();
 
             command.Connection = connection;
-            command.CommandText = "SELECT * FROM tbl_jobs";
+            command.CommandText = "SELECT * FROM tbl_countries";
 
             try
             {
@@ -41,39 +40,38 @@ namespace ConnectionDB
                 {
                     while (reader.Read())
                     {
-                        jobs.Add(new Jobs
+                        countries.Add(new Countries
                         {
                             Id = reader.GetInt32(0),
-                            JobTitle = reader.GetString(1),
-                            MinSalary = reader.GetInt32(2),
-                            MaxSalary = reader.GetInt32(3)
+                            Name = reader.GetString(1),
+                            RegionsId = reader.GetInt32(2)
                         });
                     }
                     reader.Close();
                     connection.Close();
 
-                    return jobs;
+                    return countries;
                 }
                 reader.Close();
                 connection.Close();
 
-                return new List<Jobs>();
+                return new List<Countries>();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
 
-            return new List<Jobs>();
+            return new List<Countries>();
         }
 
-        public Jobs GetById(int id)
+        public Countries GetById(int id)
         {
-            using var connection = new SqlConnection(connectionString);
-            using var command = new SqlCommand();
+            using var connection = Connections.GetConnection();
+            using var command = Connections.GetCommand();
 
             command.Connection = connection;
-            command.CommandText = "SELECT * FROM tbl_jobs WHERE id =@id";
+            command.CommandText = "SELECT * FROM tbl_countries WHERE id =@id";
 
             try
             {
@@ -87,49 +85,48 @@ namespace ConnectionDB
                 {
                     while (reader.Read())
                     {
-                        return new Jobs()
+                        return new Countries()
                         {
                             Id = reader.GetInt32(0),
-                            JobTitle = reader.GetString(1),
-                            MinSalary = reader.GetInt32(2),
-                            MaxSalary = reader.GetInt32(3)
+                            Name = reader.GetString(1),
+                            RegionsId = reader.GetInt32(2)
+
                         };
 
                     }
                     reader.Close();
                     connection.Close();
 
-                    return new Jobs();
+                    return new Countries();
 
                 }
                 reader.Close();
                 connection.Close();
 
-                return new Jobs();
+                return new Countries();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
-            return new Jobs();
+            return new Countries();
 
 
         }
 
-        public string Insert(int id, string jobTitle, int minsalary, int maxSalary)
+        public string Insert(Countries countries)
         {
-            using var connection = new SqlConnection(connectionString);
-            using var command = new SqlCommand();
+            using var connection = Connections.GetConnection();
+            using var command = Connections.GetCommand();
 
             command.Connection = connection;
-            command.CommandText = "INSERT INTO tbl_jobs VALUES (@Id, @jobTitle, @minSalary, @maxSalary);";
+            command.CommandText = "INSERT INTO tbl_countries VALUES (@id, @name, @regions_id);";
 
             try
             {
-                command.Parameters.Add(new SqlParameter("@id", id));
-                command.Parameters.Add(new SqlParameter("@jobTitle", jobTitle));
-                command.Parameters.Add(new SqlParameter("@minSalary", minsalary));
-                command.Parameters.Add(new SqlParameter("@maxSalary", maxSalary));
+                command.Parameters.Add(new SqlParameter("@id", countries.Id));
+                command.Parameters.Add(new SqlParameter("@name", countries.Name));
+                command.Parameters.Add(new SqlParameter("@regions_id", countries.RegionsId));
 
                 connection.Open();
                 using var transaction = connection.BeginTransaction();
@@ -156,20 +153,19 @@ namespace ConnectionDB
             }
         }
 
-        public string Update(int id, string jobTitle, int minSalary, int maxSalary)
+        public string Update(Countries countries)
         {
-            using var connection = new SqlConnection(connectionString);
-            using var command = new SqlCommand();
+            using var connection = Connections.GetConnection();
+            using var command = Connections.GetCommand();
 
             command.Connection = connection;
-            command.CommandText = "UPDATE tbl_jobs SET id = @Id, jobTitle = @jobTitle, minSalary = @minSalary, maxSalary @maxSalary WHERE @id = id";
+            command.CommandText = "UPDATE tbl_countries SET name = @name, regions_id = @regionsId, WHERE @id = id";
 
             try
             {
-                command.Parameters.Add(new SqlParameter("@id", id));
-                command.Parameters.Add(new SqlParameter("@jobTitle", jobTitle));
-                command.Parameters.Add(new SqlParameter("@minSalary", minSalary));
-                command.Parameters.Add(new SqlParameter("@maxSalary", maxSalary));
+                command.Parameters.Add(new SqlParameter("@id", countries.Id));
+                command.Parameters.Add(new SqlParameter("@name", countries.Name));
+                command.Parameters.Add(new SqlParameter("@regionsId", countries.RegionsId));
 
                 connection.Open();
                 using var transaction = connection.BeginTransaction();
@@ -199,11 +195,11 @@ namespace ConnectionDB
 
         public string Delete(int id)
         {
-            using var connection = new SqlConnection(connectionString);
-            using var command = new SqlCommand();
+            using var connection = Connections.GetConnection();
+            using var command = Connections.GetCommand();
 
             command.Connection = connection;
-            command.CommandText = "DELETE tbl_jobs WHERE @id = id";
+            command.CommandText = "DELETE tbl_countries WHERE @id = id";
 
             try
             {
@@ -235,5 +231,7 @@ namespace ConnectionDB
 
 
         }
+
+
     }
 }
