@@ -1,0 +1,14 @@
+C:\Users\ASUS\source\repos\AnggotaLibrary\obj\Debug\net6.0\AnggotaLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\source\repos\AnggotaLibrary\obj\Debug\net6.0\AnggotaLibrary.AssemblyInfoInputs.cache
+C:\Users\ASUS\source\repos\AnggotaLibrary\obj\Debug\net6.0\AnggotaLibrary.AssemblyInfo.cs
+C:\Users\ASUS\source\repos\AnggotaLibrary\obj\Debug\net6.0\AnggotaLibrary.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\source\repos\AnggotaLibrary\bin\Debug\net6.0\AnggotaLibrary.exe
+C:\Users\ASUS\source\repos\AnggotaLibrary\bin\Debug\net6.0\AnggotaLibrary.deps.json
+C:\Users\ASUS\source\repos\AnggotaLibrary\bin\Debug\net6.0\AnggotaLibrary.runtimeconfig.json
+C:\Users\ASUS\source\repos\AnggotaLibrary\bin\Debug\net6.0\AnggotaLibrary.dll
+C:\Users\ASUS\source\repos\AnggotaLibrary\bin\Debug\net6.0\AnggotaLibrary.pdb
+C:\Users\ASUS\source\repos\AnggotaLibrary\obj\Debug\net6.0\AnggotaLibrary.dll
+C:\Users\ASUS\source\repos\AnggotaLibrary\obj\Debug\net6.0\refint\AnggotaLibrary.dll
+C:\Users\ASUS\source\repos\AnggotaLibrary\obj\Debug\net6.0\AnggotaLibrary.pdb
+C:\Users\ASUS\source\repos\AnggotaLibrary\obj\Debug\net6.0\AnggotaLibrary.genruntimeconfig.cache
+C:\Users\ASUS\source\repos\AnggotaLibrary\obj\Debug\net6.0\ref\AnggotaLibrary.dll

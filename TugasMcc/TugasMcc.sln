@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BelajarMandiri", "..\Belaja
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelNesia", "..\TravelNesia\TravelNesia.csproj", "{4FEA8321-07DE-477A-9185-6B4718CFFD98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "..\Library\Library.csproj", "{16EDDBEC-929C-4BBD-A3EB-890E3C46D816}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library", "..\Library\Library.csproj", "{16EDDBEC-929C-4BBD-A3EB-890E3C46D816}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnggotaLibrary", "..\AnggotaLibrary\AnggotaLibrary.csproj", "{D215CD87-2B4D-480E-BDEF-3C297AF3104F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager", "..\TaskManager\TaskManager.csproj", "{36058E61-4424-4D6E-BC1A-C573833F2139}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{16EDDBEC-929C-4BBD-A3EB-890E3C46D816}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16EDDBEC-929C-4BBD-A3EB-890E3C46D816}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16EDDBEC-929C-4BBD-A3EB-890E3C46D816}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D215CD87-2B4D-480E-BDEF-3C297AF3104F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D215CD87-2B4D-480E-BDEF-3C297AF3104F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D215CD87-2B4D-480E-BDEF-3C297AF3104F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D215CD87-2B4D-480E-BDEF-3C297AF3104F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36058E61-4424-4D6E-BC1A-C573833F2139}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36058E61-4424-4D6E-BC1A-C573833F2139}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36058E61-4424-4D6E-BC1A-C573833F2139}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36058E61-4424-4D6E-BC1A-C573833F2139}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

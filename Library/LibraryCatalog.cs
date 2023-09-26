@@ -18,7 +18,7 @@ namespace Library
 
         public void AddBook(Book book)
         {
-            if (!errorHandler.HandleBookError(book.Tittle, book.Author, book.PublishYear, book.NoISBN))
+            if (!errorHandler.HandleBookError(book.Tittle, book.Author, book.NoISBN))
             {
                 return;
             }
@@ -26,9 +26,41 @@ namespace Library
             Console.WriteLine("Book data has been successfully added!!");
 
         }
+
+        public void UpdateBook(int inpUpdate)
+        {
+            Book idUpdate = FindIsbn(inpUpdate);
+            Book bookEdit = booksks.FirstOrDefault(u => u.NoISBN == inpUpdate);
+            if (bookEdit != null)
+            {
+                Console.Write("New Title Name  : ");
+                bookEdit.Tittle= Console.ReadLine();
+
+                Console.Write("New Author Name : ");
+                bookEdit.Author= Console.ReadLine();
+
+                Console.Write("New ISBN Number : ");
+                bookEdit.NoISBN = int.Parse(Console.ReadLine());
+    
+            } 
+
+        }
+
         public Book FindIsbn(int noBuku)
         {
-            return booksks.FirstOrDefault(b => b.NoISBN == noBuku);
+            var book = booksks.FirstOrDefault(b => b.NoISBN == noBuku);
+
+            if (book == null)
+            {
+                Console.WriteLine($"Buku dengan nomor ISBN {noBuku} tidak ditemukan.");
+            }
+            else
+            {
+                Console.WriteLine($"Buku ditemukan: {book.Tittle}");
+            }
+
+            return book;
+
         }
 
         public void RemoveBook(Book book)
@@ -72,7 +104,6 @@ namespace Library
                 Console.WriteLine($"" +
                     $"\nJudul Buku          : {listBook.Tittle} " +
                     $"\nPenulis             : {listBook.Author} " +
-                    $"\nTahun Terbit        : {listBook.PublishYear}" +
                     $"\nNomor ISBN          : {listBook.NoISBN}");
                 Console.WriteLine("--------------------------------------------");
 

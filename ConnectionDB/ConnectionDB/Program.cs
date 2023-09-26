@@ -187,9 +187,9 @@ class Program
         var isLoop = true;
         while (isLoop)
         {
-            Console.WriteLine("1. List all countries");
-            Console.WriteLine("2. Insert new countries");
-            Console.WriteLine("3. Update countries");
+            Console.WriteLine("1. List all Locations");
+            Console.WriteLine("2. Insert new Locations");
+            Console.WriteLine("3. Update Locations");
             Console.WriteLine("4. Delete countries");
             Console.WriteLine("10. Back");
             Console.Write("Enter your choice: ");
@@ -218,6 +218,47 @@ class Program
         }
     }
 
+
+    public static void DepartmentMenu()
+    {
+        var locations = new Locations();
+        var locationView = new LocationsView();
+
+        var locationsController = new LocationsController(locations, locationView);
+
+        var isLoop = true;
+        while (isLoop)
+        {
+            Console.WriteLine("1. List all Department");
+            Console.WriteLine("2. Insert new Department");
+            Console.WriteLine("3. Update Department");
+            Console.WriteLine("4. Delete Department");
+            Console.WriteLine("10. Back");
+            Console.Write("Enter your choice: ");
+            var input2 = Console.ReadLine();
+            switch (input2)
+            {
+                case "1":
+                    locationsController.GetAll();
+                    break;
+                case "2":
+                    locationsController.Insert();
+                    break;
+                case "3":
+                    locationsController.Update();
+                    break;
+                case "4":
+                    locationsController.Delete();
+                    break;
+                case "10":
+                    isLoop = false;
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice");
+                    break;
+            }
+        }
+    }
 
 }
 

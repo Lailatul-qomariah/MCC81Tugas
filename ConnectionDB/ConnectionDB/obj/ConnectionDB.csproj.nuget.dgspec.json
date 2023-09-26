@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\C#\\MVC\\MVC\\ConnectionDB\\ConnectionDB.csproj": {}
+    "C:\\Users\\ASUS\\source\\repos\\ConnectionDB\\ConnectionDB\\ConnectionDB.csproj": {}
   },
   "projects": {
-    "E:\\C#\\MVC\\MVC\\ConnectionDB\\ConnectionDB.csproj": {
+    "C:\\Users\\ASUS\\source\\repos\\ConnectionDB\\ConnectionDB\\ConnectionDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\C#\\MVC\\MVC\\ConnectionDB\\ConnectionDB.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\ConnectionDB\\ConnectionDB\\ConnectionDB.csproj",
         "projectName": "ConnectionDB",
-        "projectPath": "E:\\C#\\MVC\\MVC\\ConnectionDB\\ConnectionDB.csproj",
+        "projectPath": "C:\\Users\\ASUS\\source\\repos\\ConnectionDB\\ConnectionDB\\ConnectionDB.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "E:\\C#\\MVC\\MVC\\ConnectionDB\\obj\\",
+        "outputPath": "C:\\Users\\ASUS\\source\\repos\\ConnectionDB\\ConnectionDB\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8hYQzxECOMwnRZNHkHFO375uMi66+D+sYr/T7q23WZcu9yd+Qiu1Gcc3tDLyK/8IZG4qHhL8we+obRYiTkBOgg==",
+  "dgSpecHash": "vZHF44GZuEgqYBKLJTz6BTeWI7yXmRMSQZKT/rVZYXdnTuNFkNvvuqJM5exsYUTkCVqN4zzdZYvLtphpcNup+Q==",
   "success": true,
-  "projectFilePath": "E:\\C#\\MVC\\MVC\\ConnectionDB\\ConnectionDB.csproj",
+  "projectFilePath": "C:\\Users\\ASUS\\source\\repos\\ConnectionDB\\ConnectionDB\\ConnectionDB.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

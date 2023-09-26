@@ -32,7 +32,7 @@ namespace Library
                 // Konversi input menjadi angka untuk memeriksa rentang tahun yang valid
                 int year = int.Parse(cekYear);
 
-                // Batasan tahun yang valid, misalnya 1900 hingga 2099
+                // Batasan tahun yang valid, misalnya 1900 hingga 2023
                 int minYear = 1900;
                 int maxYear = 2023;
 
@@ -65,19 +65,17 @@ namespace Library
             Console.WriteLine("\nThere are no books that match the keywords given!!");
         }
 
-        public bool HandleBookError(string title, string author, int publicationYear, int noBuku)
+        public bool HandleBookError(string title, string author, int noBuku)
         {
-            if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(author) || publicationYear == 0)
+            if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(author) || noBuku == 0)
             {
                 Console.WriteLine("\nData cannot be empty!. Make sure all columns are filled in!");
                 return false; // Jika input tidak valid, keluar dari metode.
             }
 
-            if (!ValidatePubYear(publicationYear) || !validateIsbn(noBuku))
+            if ( !validateIsbn(noBuku))
             {
-                Console.WriteLine("\nInvalid Publish Year or ISBN Number Format!" +
-                    "\nInput Publish Year cannot be later than 2023 and less than 1900\n" +
-                    "ISBN  must contain exactly 10 or 13 digits");
+                Console.WriteLine("\nISBN  must contain exactly 10 or 13 digits");
                 return false;
             }
             //cek apakah no isbn yg dimasukkan sama dengan no ISBN yang sudah ada
